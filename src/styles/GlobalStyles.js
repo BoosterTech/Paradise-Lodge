@@ -75,7 +75,7 @@ const GlobalStyles = createGlobalStyle`
 *::before,
 *::after {
   box-sizing: border-box;
-  padding: 0;
+  padding: 5px;
   margin: 0;
 
   /* Creating animations for dark mode */
