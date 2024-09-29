@@ -14,8 +14,8 @@ function App() {
             <h2>Check in and out</h2>
             <Button onClick={() => alert("Check in")}>Check in</Button>
             <Button
-              variation="secondary"
-              size="small"
+              $variation="secondary"
+              $size="small"
               onClick={() => alert("Check out")}
             >
               Check out
