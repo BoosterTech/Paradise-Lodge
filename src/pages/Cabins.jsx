@@ -6,7 +6,9 @@ import CabinTable from "../features/cabins/CabinTable";
 
 function Cabins() {
   useEffect(function () {
-    getCabins()?.then((data) => console.log(data));
+    getCabins()
+      ?.then(() => console.log("Cabins data loaded successfully"))
+      .catch((error) => console.error("Error Loading cabins data: ", error));
   }, []);
 
   return (
