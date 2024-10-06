@@ -46,9 +46,13 @@ const Error = styled.span`
 function CreateCabinForm() {
   const { register, handleSubmit } = useForm();
 
+  function onSubmit(data) {
+    console.log(data);
+  }
+
   return (
-    <Form>
-      <FormRow>
+    <Form onSubmit={handleSubmit(onSubmit)}>
+      <FormRow >
         <Label htmlFor="name">Cabin name</Label>
         <Input type="text" id="name" {...register("name")} />
       </FormRow>
@@ -69,6 +73,7 @@ function CreateCabinForm() {
           type="number"
           id="discount"
           defaultValue={0}
+          onFocus={(e) => (e.target.value = "")}
           {...register("discount")}
         />
       </FormRow>
@@ -90,10 +95,10 @@ function CreateCabinForm() {
 
       <FormRow>
         {/* type is an HTML attribute! */}
-        <Button variation="secondary" type="reset">
+        <Button $variation="secondary" type="reset">
           Cancel
         </Button>
-        <Button>Edit cabin</Button>
+        <Button>Add cabin</Button>
       </FormRow>
     </Form>
   );
