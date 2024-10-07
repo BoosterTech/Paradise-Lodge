@@ -46,6 +46,7 @@ function CreateCabinForm() {
         <Input
           type="text"
           id="name"
+          disabled={isCreating}
           {...register("name", { required: "This field is required" })}
         />
       </FormRow>
@@ -54,6 +55,7 @@ function CreateCabinForm() {
         <Input
           type="number"
           id="maxCapacity"
+          disabled={isCreating}
           {...register("maxCapacity", {
             required: "This field is required",
             min: {
@@ -68,6 +70,7 @@ function CreateCabinForm() {
         <Input
           type="number"
           id="regularPrice"
+          disabled={isCreating}
           {...register("regularPrice", { required: "This field is required" })}
         />
       </FormRow>
@@ -76,6 +79,7 @@ function CreateCabinForm() {
         <Input
           type="number"
           id="discount"
+          disabled={isCreating}
           // defaultValue={0}
           onFocus={(e) => (e.target.value = "")}
           {...register("discount", {
@@ -95,6 +99,7 @@ function CreateCabinForm() {
           type="number"
           id="description"
           defaultValue=""
+          disabled={isCreating}
           {...register("description", { required: "This field is required" })}
         />
       </FormRow>
