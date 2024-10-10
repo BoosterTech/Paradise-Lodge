@@ -46,6 +46,7 @@ function CreateCabinForm() {
         <Input
           type="text"
           id="name"
+          autoComplete="name" // Autocomplete attribute
           disabled={isCreating}
           {...register("name", { required: "This field is required" })}
         />
@@ -55,6 +56,7 @@ function CreateCabinForm() {
         <Input
           type="number"
           id="maxCapacity"
+          autoComplete="off"
           disabled={isCreating}
           {...register("maxCapacity", {
             required: "This field is required",
@@ -70,6 +72,7 @@ function CreateCabinForm() {
         <Input
           type="number"
           id="regularPrice"
+          autoComplete="off"
           disabled={isCreating}
           {...register("regularPrice", { required: "This field is required" })}
         />
@@ -81,12 +84,21 @@ function CreateCabinForm() {
           id="discount"
           disabled={isCreating}
           defaultValue={0}
-          onFocus={(e) => (e.target.value = "")}
           {...register("discount", {
             required: "This field is required",
-            validate: (value) =>
-              value <= getValues().regularPrice ||
-              "Discount should be less that regular price",
+            validate: (value) => {
+              const discount = parseFloat(value);
+              const regularPrice = parseFloat(getValues().regularPrice);
+
+              if (!regularPrice) {
+                return "Regular price is required before applying a discount.";
+              }
+
+              return (
+                discount <= regularPrice ||
+                "Discount should be less that regular price"
+              );
+            },
           })}
         />
       </FormRow>
@@ -96,7 +108,6 @@ function CreateCabinForm() {
         error={errors?.description?.message}
       >
         <Textarea
-          type="number"
           id="description"
           defaultValue=""
           disabled={isCreating}
@@ -113,7 +124,9 @@ function CreateCabinForm() {
         <Button $variation="secondary" type="reset">
           Cancel
         </Button>
-        <Button disabled={isCreating}>Add cabin</Button>
+        <Button disabled={isCreating} type="submit">
+          Add cabin
+        </Button>
       </FormRow>
     </Form>
   );
