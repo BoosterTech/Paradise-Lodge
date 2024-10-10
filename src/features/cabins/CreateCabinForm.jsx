@@ -80,7 +80,7 @@ function CreateCabinForm() {
           type="number"
           id="discount"
           disabled={isCreating}
-          // defaultValue={0}
+          defaultValue={0}
           onFocus={(e) => (e.target.value = "")}
           {...register("discount", {
             required: "This field is required",
