@@ -1,7 +1,5 @@
-import React from "react";
 import styled from "styled-components";
 import PropTypes from "prop-types";
-import Input from "./Input";
 
 const StyledFormRow = styled.div`
   display: grid;
@@ -38,11 +36,16 @@ const Error = styled.span`
   font-size: 1.4rem;
   color: var(--color-red-700);
 `;
-const propTypes = {};
+const propTypes = {
+  label: PropTypes.string,
+  error: PropTypes.string,
+  children: PropTypes.oneOfType([
+    PropTypes.element,
+    PropTypes.arrayOf(PropTypes.node), // Accept both a single element and an array of nodes
+  ]).isRequired,
+};
 
-const defaultProps = {};
-
-function FormRow({ label, error, children }) {
+function FormRow({ label = null, error = null, children }) {
   return (
     <StyledFormRow>
       {label && <Label htmlFor={children.props.id}>{label}</Label>}
@@ -53,7 +56,5 @@ function FormRow({ label, error, children }) {
 }
 
 FormRow.propTypes = propTypes;
-FormRow.defaultProps = defaultProps;
-// #endregion
 
 export default FormRow;
