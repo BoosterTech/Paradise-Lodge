@@ -134,7 +134,6 @@ function CreateCabinForm({ cabinToEdit = {} }) {
         <Textarea
           id="description"
           defaultValue=""
-          disabled={isWorking}
           {...register("description", { required: "This field is required" })}
         />
       </FormRow>
