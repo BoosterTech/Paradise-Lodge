@@ -58,19 +58,6 @@ const CabinRow = ({ cabin }) => {
     image,
   } = cabin;
 
-  // const queryClient = useQueryClient();
-
-  // const { isLoading: isDeleting, mutate } = useMutation({
-  //   mutationFn: (id) => deleteCabin(id),
-  //   onSuccess: () => {
-  //     toast.success("Cabin successfully deleted");
-  //     queryClient.invalidateQueries({
-  //       queryKey: ["cabins"],
-  //     });
-  //   },
-  //   onError: (err) => toast.error(err.message),
-  // });
-
   const { isDeleting, deleteCabin } = useDeleteCabin();
 
   return (
