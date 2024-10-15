@@ -6,6 +6,8 @@ import CreateCabinForm from "./CreateCabinForm-v1";
 
 import { useDeleteCabin } from "./useDeleteCabin";
 import { formatCurrency } from "../../utils/helpers";
+import { HiPencil, HiSquare2Stack, HiTrash } from "react-icons/hi2";
+import { useCreateCabin } from "./useCreateCabin";
 
 const TableRow = styled.div`
   display: grid;
@@ -54,11 +56,25 @@ const CabinRow = ({ cabin }) => {
     name,
     maxCapacity,
     regularPrice,
+    description,
     discount,
     image,
   } = cabin;
 
   const { isDeleting, deleteCabin } = useDeleteCabin();
+  const { isCreatingCabin, createCabin } = useCreateCabin();
+
+  function handleDuplicate() {
+    createCabin({
+      name: `Copy of ${name}`,
+      description,
+      maxCapacity,
+      regularPrice,
+      discount,
+      image,
+    });
+    console.log(`Cabin ${name} duplicated!`);
+  }
 
   return (
     <>
@@ -73,9 +89,14 @@ const CabinRow = ({ cabin }) => {
           <span>&mdash;</span>
         )}
         <div>
-          <button onClick={() => setShowForm((show) => !show)}>Edit</button>
+          <button onClick={handleDuplicate} disabled={isCreatingCabin}>
+            <HiSquare2Stack />
+          </button>
+          <button onClick={() => setShowForm((show) => !show)}>
+            <HiPencil />
+          </button>
           <button onClick={() => deleteCabin(cabinId)} disabled={isDeleting}>
-            Delete
+            <HiTrash />
           </button>
         </div>
       </TableRow>
@@ -92,6 +113,7 @@ CabinRow.propTypes = {
     regularPrice: PropTypes.number,
     discount: PropTypes.number,
     image: PropTypes.string,
+    description: PropTypes.string,
   }).isRequired,
 };
 
