@@ -1,9 +1,11 @@
 import { useEffect } from "react";
+
 import Heading from "../ui/Heading";
 import Row from "../ui/Row";
-import { getCabins } from "../services/apiCabins";
 import CabinTable from "../features/cabins/CabinTable";
 import AddCabin from "../features/cabins/Addcabin";
+
+import { getCabins } from "../services/apiCabins";
 
 function Cabins() {
   useEffect(function () {
@@ -21,7 +23,7 @@ function Cabins() {
       <Row>
         <CabinTable />
       </Row>
-      <AddCabin/>
+      <AddCabin />
     </>
   );
 }
