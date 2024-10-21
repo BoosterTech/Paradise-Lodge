@@ -112,7 +112,7 @@ Row.propTypes = {
 };
 Body.propTypes = {
   children: PropTypes.node,
-  data: PropTypes.node,
+  data: PropTypes.any,
   render: PropTypes.func,
 };
 
