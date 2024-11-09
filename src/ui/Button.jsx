@@ -46,6 +46,16 @@ const variations = {
       background-color: var(--color-red-800);
     }
   `,
+  menuIcon: css`
+    color: var(--color-red-100);
+    background-color: var(--color-grey-0);
+    border: none;
+    outline: none;
+
+    &:hover {
+      background-color: var(--color-grey-50);
+    }
+  `,
 };
 
 export const Button = styled.button`
