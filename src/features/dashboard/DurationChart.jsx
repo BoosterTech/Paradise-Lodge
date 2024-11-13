@@ -161,7 +161,7 @@ function DurationChart({ confirmedStays }) {
             outerRadius={110}
             cx="40%"
             cy="50%"
-            paddingAngle={10}
+            paddingAngle={7}
           >
             {startDataLight.map((entry) => (
               <Cell
