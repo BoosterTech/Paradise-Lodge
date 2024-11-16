@@ -8,6 +8,7 @@ import ButtonGroup from "../../ui/ButtonGroup";
 import { Button } from "../../ui/Button";
 import ButtonText from "../../ui/ButtonText";
 import Spinner from "../../ui/Spinner";
+import Empty from "../../ui/Empty";
 
 import { useMoveBack } from "../../hooks/useMoveBack";
 import { useBooking } from "./useBooking";
@@ -25,17 +26,24 @@ const HeadingGroup = styled.div`
 `;
 
 function BookingDetail() {
-  const { booking, isLoading, error } = useBooking();
+  const {
+    booking,
+    isLoading,
+    // error
+  } = useBooking();
   const { checkout, isCheckingOut } = useCheckout();
   const { deleteBooking, isDeleting } = useDeleteBooking();
-  const navigate = useNavigate();
 
+  const navigate = useNavigate();
   const moveBack = useMoveBack();
-  const { status = "unknown", id: bookingId } = booking;
 
   if (isLoading) return <Spinner />;
+  if (!booking || booking.length === 0) return <Empty resourceName="booking" />;
+  console.log("booking:", booking);
 
-  if (error) return <div>Error loading booking details: {error.message}</div>;
+  // if (error) return <div>Error loading booking details: {error.message}</div>;
+
+  const { status, id: bookingId } = booking;
 
   const statusToTagName = {
     unconfirmed: "blue",
