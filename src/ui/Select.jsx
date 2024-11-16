@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import styled from "styled-components";
 
 const StyledSelect = styled.select`
@@ -24,6 +25,18 @@ const Select = ({ options, value, onChange, ...props }) => {
       ))}
     </StyledSelect>
   );
+};
+
+Select.propTypes = {
+  options: PropTypes.arrayOf(
+    PropTypes.shape({
+      value: PropTypes.string,
+      label: PropTypes.string,  // label can be a string (no .isRequired)
+    })
+  ), // `options` is still expected to be an array but not required
+
+  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]), // `value` can be string or number, no .isRequired
+  onChange: PropTypes.func, // onChange is expected to be a function, but not required
 };
 
 export default Select;

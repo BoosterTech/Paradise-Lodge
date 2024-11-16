@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import styled from "styled-components";
 
 const StyledDataItem = styled.div`
@@ -31,5 +32,11 @@ function DataItem({ icon, label, children }) {
     </StyledDataItem>
   );
 }
+
+DataItem.propTypes = {
+  icon: PropTypes.node, // `icon` is optional, can be any valid React node (like an icon component)
+  label: PropTypes.string, // `label` is optional, should be a string if provided
+  children: PropTypes.node, // `children` is optional, can be any valid React node
+};
 
 export default DataItem;

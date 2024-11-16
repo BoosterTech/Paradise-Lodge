@@ -5,6 +5,7 @@ import { Flag } from "../../ui/Flag";
 import { Button } from "../../ui/Button";
 import { Link } from "react-router-dom";
 import CheckoutButton from "../check-in-out/CheckoutButton";
+import PropTypes from "prop-types";
 
 const StyledTodayItem = styled.li`
   display: grid;
@@ -50,5 +51,18 @@ function TodayItem({ activity }) {
     </StyledTodayItem>
   );
 }
+
+TodayItem.propTypes = {
+  activity: PropTypes.shape({
+    id: PropTypes.any,
+    status: PropTypes.oneOf(["unconfirmed", "checked-in"]), // status can be "unconfirmed" or "checked-in"
+    guests: PropTypes.shape({
+      fullName: PropTypes.string, // fullName can be a string
+      country: PropTypes.string, // country can be a string
+      countryFlag: PropTypes.string, // countryFlag can be a string (URL or image source)
+    }), // guests is an object, but not required
+    numNights: PropTypes.number, // numNights can be a number
+  }), // activity is an object but not required
+};
 
 export default TodayItem;

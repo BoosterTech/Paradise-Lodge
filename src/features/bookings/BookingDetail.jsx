@@ -39,7 +39,6 @@ function BookingDetail() {
 
   if (isLoading) return <Spinner />;
   if (!booking || booking.length === 0) return <Empty resourceName="booking" />;
-  console.log("booking:", booking);
 
   // if (error) return <div>Error loading booking details: {error.message}</div>;
 

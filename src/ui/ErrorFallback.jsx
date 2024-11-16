@@ -2,6 +2,7 @@ import styled from "styled-components";
 import Heading from "./Heading";
 import GlobalStyles from "../styles/GlobalStyles";
 import { Button } from "./Button";
+import PropTypes from "prop-types";
 
 const StyledErrorFallback = styled.main`
   height: 100vh;
@@ -33,7 +34,7 @@ const Box = styled.div`
   }
 `;
 
-function ErrorFallback({ error, resetErrorBoundary }) {
+function ErrorFallback({ error="", resetErrorBoundary }) {
   return (
     <>
       <GlobalStyles />
@@ -49,5 +50,12 @@ function ErrorFallback({ error, resetErrorBoundary }) {
     </>
   );
 }
+
+ErrorFallback.propTypes = {
+  error: PropTypes.shape({
+    message: PropTypes.string, // Ensure `error` has a `message` property that is a string
+  }).isRequired,
+  resetErrorBoundary: PropTypes.func, // Ensure `resetErrorBoundary` is a required function
+};
 
 export default ErrorFallback;

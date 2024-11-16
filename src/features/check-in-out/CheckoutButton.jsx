@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import { Button } from "../../ui/Button";
 import { useCheckout } from "./useCheckout";
 
@@ -15,5 +16,9 @@ function CheckoutButton({ bookingId }) {
     </Button>
   );
 }
+
+CheckoutButton.propTypes = {
+  bookingId: PropTypes.any,
+};
 
 export default CheckoutButton;

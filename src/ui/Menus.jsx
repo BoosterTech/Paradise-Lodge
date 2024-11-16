@@ -105,6 +105,10 @@ function Toggle({ id }) {
   );
 }
 
+Toggle.propTypes = {
+  id: PropTypes.any,
+};
+
 function List({ id, children }) {
   const { openId, position, close } = useContext(MenusContext);
   // const ref = useOutsideClick(close);
@@ -119,6 +123,11 @@ function List({ id, children }) {
     document.body
   );
 }
+
+List.propTypes = {
+  id: PropTypes.any, // `id` is optional and should be a string if provided
+  children: PropTypes.node, // `children` is optional and must be a React node
+};
 
 function Button({ children, icon, onClick }) {
   const { close } = useContext(MenusContext);
@@ -137,6 +146,12 @@ function Button({ children, icon, onClick }) {
     </li>
   );
 }
+
+Button.propTypes = {
+  children: PropTypes.node, // `children` is required and must be a React node
+  icon: PropTypes.node, // `icon` is optional and can be a React node (e.g., an icon component)
+  onClick: PropTypes.func, // `onClick` is optional and must be a function if provided
+};
 
 Menus.Menu = Menu;
 Menus.Toggle = Toggle;

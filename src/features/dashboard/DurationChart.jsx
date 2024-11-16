@@ -11,6 +11,7 @@ import {
   Tooltip,
 } from "recharts";
 import { useDarkMode } from "../../context/DarkModeContext";
+import PropTypes from "prop-types";
 
 const ChartBox = styled.div`
   /* Box */
@@ -185,5 +186,9 @@ function DurationChart({ confirmedStays }) {
     </ChartBox>
   );
 }
+
+DurationChart.propTypes = {
+  confirmedStays: PropTypes.array, // `confirmedStays` is an array (not required)
+};
 
 export default DurationChart;

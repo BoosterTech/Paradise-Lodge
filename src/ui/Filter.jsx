@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import { useSearchParams } from "react-router-dom";
 import styled, { css } from "styled-components";
 
@@ -60,6 +61,16 @@ const Filter = ({ filterField, options }) => {
       ))}
     </StyledFilter>
   );
+};
+
+Filter.propTypes = {
+  filterField: PropTypes.string, 
+  options: PropTypes.arrayOf(
+    PropTypes.shape({
+      value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]), 
+      label: PropTypes.string, 
+    })
+  ), 
 };
 
 export default Filter;

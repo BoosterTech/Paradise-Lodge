@@ -18,6 +18,7 @@ import { formatCurrency } from "../../utils/helpers";
 import { formatDistanceFromNow } from "../../utils/helpers";
 import { useCheckout } from "../check-in-out/useCheckout";
 import { useDeleteBooking } from "./useDeleteBooking";
+import PropTypes from "prop-types";
 
 const Cabin = styled.div`
   font-size: 1.6rem;
@@ -143,5 +144,25 @@ function BookingRow({
     </Table.Row>
   );
 }
+
+BookingRow.propTypes = {
+  booking: PropTypes.shape({
+    id: PropTypes.any,
+    created_at: PropTypes.string,
+    startDate: PropTypes.string,
+    endDate: PropTypes.string,
+    numNights: PropTypes.number,
+    numGuests: PropTypes.number,
+    totalPrice: PropTypes.number,
+    status: PropTypes.string,
+    guests: PropTypes.shape({
+      fullName: PropTypes.string,
+      email: PropTypes.string,
+    }),
+    cabins: PropTypes.shape({
+      name: PropTypes.string,
+    }),
+  }),
+};
 
 export default BookingRow;

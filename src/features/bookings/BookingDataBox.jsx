@@ -11,6 +11,7 @@ import DataItem from "../../ui/DataItem";
 import { Flag } from "../../ui/Flag";
 
 import { formatDistanceFromNow, formatCurrency } from "../../utils/helpers";
+import PropTypes from "prop-types";
 
 const StyledBookingDataBox = styled.section`
   /* Box */
@@ -77,9 +78,9 @@ const Price = styled.div`
   margin-top: 2.4rem;
 
   background-color: ${(props) =>
-    props.isPaid ? "var(--color-green-100)" : "var(--color-yellow-100)"};
+    props.$isPaid ? "var(--color-green-100)" : "var(--color-yellow-100)"};
   color: ${(props) =>
-    props.isPaid ? "var(--color-green-700)" : "var(--color-yellow-700)"};
+    props.$isPaid ? "var(--color-green-700)" : "var(--color-yellow-700)"};
 
   & p:last-child {
     text-transform: uppercase;
@@ -163,7 +164,7 @@ function BookingDataBox({ booking }) {
           {hasBreakfast ? "Yes" : "No"}
         </DataItem>
 
-        <Price isPaid={isPaid}>
+        <Price $isPaid={isPaid}>
           <DataItem icon={<HiOutlineCurrencyDollar />} label={`Total price`}>
             {formatCurrency(totalPrice)}
 
@@ -184,4 +185,29 @@ function BookingDataBox({ booking }) {
   );
 }
 
+BookingDataBox.propTypes = {
+  booking: PropTypes.shape({
+    created_at: PropTypes.string,
+    startDate: PropTypes.string,
+    endDate: PropTypes.string,
+    numNights: PropTypes.number,
+    numGuests: PropTypes.number,
+    cabinPrice: PropTypes.number,
+    extrasPrice: PropTypes.number,
+    totalPrice: PropTypes.number,
+    hasBreakfast: PropTypes.bool,
+    observations: PropTypes.string,
+    isPaid: PropTypes.bool,
+    guests: PropTypes.shape({
+      fullName: PropTypes.string,
+      email: PropTypes.string,
+      country: PropTypes.string,
+      countryFlag: PropTypes.string,
+      nationalID: PropTypes.string,
+    }),
+    cabins: PropTypes.shape({
+      name: PropTypes.string,
+    }),
+  }),
+};
 export default BookingDataBox;
